@@ -15,4 +15,4 @@ jobs:
        - name: Install Cypress
          run: npm install cypress
        - name: Install Cypress
-         run: npm run cy:run:chrome
+         run: npm run cy:run-tests"
