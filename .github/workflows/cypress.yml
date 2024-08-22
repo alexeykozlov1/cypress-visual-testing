@@ -3,19 +3,16 @@ on:
   push:
     branches: [ main ]
 jobs:
-  cypresstests:
+  cypress-tests:
     runs-on: ubuntu-latest
-    # container:
-    #   image: mcr.microsoft.com/playwright:v1.29.1-focal
-    #   env:
-    #     ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Run tests
-        run: |
-          echo "Start the shopping store application"
-          ./shopping-store-linux-amd64 &
-        #   npm ci
-        #   echo "Run cypress tests"
-        #   npm run test:ci
+       - uses: actions/checkout@v3
+       - uses: actions/setup-node@v2
+         with:
+            node-version: '14'
+       - name: Install Dependencies
+         run: npm ci
+       - name: Install Cypress
+         run: npm install cypress
+       - name: Install Cypress
+         run: npm run cy:run:chrome
